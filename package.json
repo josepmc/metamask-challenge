@@ -7,7 +7,8 @@
     "ios": "npx react-native run-ios",
     "start": "npx react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "e2e:ios": "detox build --configuration ios.sim.debug && detox test --configuration ios.sim.debug --cleanup --workers 2"
   },
   "dependencies": {
     "react": "16.13.1",
@@ -18,10 +19,33 @@
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
     "babel-jest": "^25.1.0",
+    "detox": "17.14.9",
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "16.13.1"
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/MetamaskChallenge.app",
+        "build": "xcodebuild -workspace ios/MetamaskChallenge.xcworkspace -configuration Debug  -scheme MetamaskChallenge -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11 Pro"
+        }
+      },
+      "android.emu.debug": {
+        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "build": "yarn start:android:e2e",
+        "type": "android.emulator",
+        "device": {
+          "avdName": "Pixel_3_API_29"
+        }
+      }
+    },
+    "runner-config": "e2e/config.json",
+    "test-runner": "jest"
   },
   "jest": {
     "preset": "react-native"
