@@ -6,7 +6,9 @@ const Home = ({route}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{'Welcome'}</Text>
-      <Text style={styles.title}>{email}!</Text>
+      <Text style={styles.title} testID={'userid'}>
+        {email}!
+      </Text>
     </View>
   );
 };

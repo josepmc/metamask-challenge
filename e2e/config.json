@@ -1,9 +1,11 @@
 {
-	"rootDir": "../",
-	"setupFilesAfterEnv": ["./e2e/init.js"],
-	"preset": "react-native",
-	"forceExit": true,
-	"transform": {
-		"^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-	}
+  "testEnvironment": "./environment",
+  "testRunner": "jest-circus/runner",
+  "testTimeout": 120000,
+  "testRegex": "\\.spec\\.ts$",
+  "transform": {
+    "\\.tsx?$": "ts-jest"
+  },
+  "reporters": ["detox/runners/jest/streamlineReporter"],
+  "verbose": true
 }

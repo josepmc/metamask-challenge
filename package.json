@@ -8,7 +8,8 @@
     "start": "npx react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "ios:e2e": "detox build --configuration ios.sim.debug && detox test --configuration ios.sim.debug --cleanup --workers 2"
+    "ios:e2e": "detox build --configuration ios.sim.debug && detox test --configuration ios.sim.debug --cleanup --workers 2",
+    "android:e2e": "detox build --configuration android.emu.debug && detox test --configuration android.emu.debug --cleanup --workers 2"
   },
   "dependencies": {
     "react": "16.13.1",
@@ -24,12 +25,15 @@
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
-    "babel-jest": "^25.1.0",
-    "detox": "17.14.9",
-    "eslint": "^6.5.1",
-    "jest": "^25.1.0",
+    "@types/jest": "^27.0.3",
+    "babel-jest": "^27.3.1",
+    "detox": "19.1.0",
+    "eslint": "^8.3.0",
+    "jest": "^27.3.1",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.5.2"
   },
   "detox": {
     "configurations": {
@@ -38,15 +42,16 @@
         "build": "xcodebuild -workspace ios/MetamaskChallenge.xcworkspace -configuration Debug  -scheme MetamaskChallenge -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone 11 Pro"
+          "type": "iPhone 11"
         }
       },
       "android.emu.debug": {
         "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
-        "build": "yarn start:android:e2e",
+        "testBinaryPath": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+        "build": "cd android && ./gradlew app:assembleDebug app:assembleAndroidTest -DtestBuildType=debug && cd ..",
         "type": "android.emulator",
         "device": {
-          "avdName": "Pixel_3_API_29"
+          "avdName": "Pixel_2_API_29"
         }
       }
     },

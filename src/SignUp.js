@@ -52,8 +52,11 @@ const SignUp = ({navigation}) => {
             autoCompleteType="email"
             placeholder={'Email'}
             onChangeText={setEmail}
+            testID={'email'}
           />
-          <Text style={styles.validationErrorText}>{emailError}</Text>
+          <Text style={styles.validationErrorText} testID={'emailValidation'}>
+            {emailError}
+          </Text>
         </View>
 
         <View style={styles.inputWrapper}>
@@ -65,10 +68,15 @@ const SignUp = ({navigation}) => {
             placeholder={'Password'}
             onChangeText={setPassword}
             secureTextEntry
+            testID={'password'}
           />
-          <Text style={styles.validationErrorText}>{passwordError}</Text>
+          <Text
+            style={styles.validationErrorText}
+            testID={'passwordValidation'}>
+            {passwordError}
+          </Text>
         </View>
-        <Button onPress={onPressNext} title="Next" />
+        <Button onPress={onPressNext} title="Next" testID={'next'} />
       </View>
     </View>
   );

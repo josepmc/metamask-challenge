@@ -57,3 +57,14 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# VSCode
+.vscode/.react
+
+# Detox
+artifacts
+
+# Android
+.settings
+.classpath
+.project

@@ -6,8 +6,10 @@ const Onboarding = ({navigation}) => {
 
   return (
     <View style={styles.container} testID={'onboarding-screen'}>
-      <Text style={styles.title}>{'MetaMask Demo'}</Text>
-      <Button onPress={onSignUp} title="Sign Up" />
+      <Text style={styles.title} testID={'metamask-demo'}>
+        {'MetaMask Demo'}
+      </Text>
+      <Button onPress={onSignUp} title="Sign Up" testID={'signup'} />
     </View>
   );
 };
